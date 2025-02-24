@@ -39,3 +39,4 @@ main()
 
 // const emails = [aaa,aaa,aaa]
 // to: emails, ile toplu mail atılabilir
+
