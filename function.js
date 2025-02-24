@@ -14,7 +14,7 @@ async function sendEmail(fromEmail,toEmail,subject,html) {
     });
     try{
         const info = await tranporter.sendMail({         
-            from: fromEmail,            // bizim mail
+            from: process.env.EMAIL_USER,            // bizim mail
             to: toEmail,                                   //hedef mail ya da mailler
             subject: subject,
             html: html,
@@ -25,12 +25,12 @@ async function sendEmail(fromEmail,toEmail,subject,html) {
         console.error("mail gönderilemedi",error)
     };
 }
-const html = ` 
-    <h1>html formatında da yollanabilir</h1>
-`;
-const fromEmail = 'aslanbaba110@gmail.com'
-const toEmail = 'oguz.tekeli.37@gmail.com'
-const subject = 'Hello'
+// const html = ` 
+//     <h1>html formatında da yollanabilir</h1>
+// `;
+// const fromEmail = process.env.EMAIL_USER
+// const toEmail = 'oguz.tekeli.37@gmail.com'
+// const subject = 'Hello'
 sendEmail(fromEmail,toEmail,subject,html);
 // const emails = [aaa,aaa,aaa]
 // to: emails, ile toplu mail atılabilir
