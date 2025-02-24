@@ -1,53 +1,37 @@
 const nodemailer = require("nodemailer");
-
+require('dotenv').config();
 async function sendEmail(fromEmail,toEmail,subject,html) {
 
-    const tranporter = nodemailer.createTransport({
-        host: "smtp.mailtrap.io ",                        // mailtrapten hesap açılıp buralar doldurulmalı ya da 
-        port: 2525,
-        secure: true,
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
         auth: {
-            user: "user",
-            pass: "pass"
-        }
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS
+        },
+        secure: true,
+        port: 465,
+        host: 'smtp.gmail.com'
     });
-
-    //const tranporter = nodemailer.createTransport({
-    //    service: 'gmail',                        // gmail smptsi
-    //    auth: {
-    //        user: 'gmail adresin',
-    //        pass: 'şifren'                       2FA etkinse ugulama şifresi
-    //    }
-    //});
-
-
     try{
         const info = await tranporter.sendMail({         
-            from: 'Fred Foo <test@test.com> ',            // bizim mail
-            to: 'test',                                   //hedef mail ya da mailler
-            subject: 'Hello',
+            from: fromEmail,            // bizim mail
+            to: toEmail,                                   //hedef mail ya da mailler
+            subject: subject,
             html: html,
         })
         console.log("Message sent: %s", info.messageId);    
-
     }
     catch(error){
-        console.error("mail gönderilemedi")
+        console.error("mail gönderilemedi",error)
     };
-    
-
-    
 }
-
 const html = ` 
     <h1>html formatında da yollanabilir</h1>
 `;
-const fromEmail = 'test'
-const toEmail = 'test'
+const fromEmail = 'aslanbaba110@gmail.com'
+const toEmail = 'oguz.tekeli.37@gmail.com'
 const subject = 'Hello'
-
 sendEmail(fromEmail,toEmail,subject,html);
-
 // const emails = [aaa,aaa,aaa]
 // to: emails, ile toplu mail atılabilir
 

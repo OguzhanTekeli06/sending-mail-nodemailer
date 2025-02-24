@@ -24,6 +24,16 @@ async function main() {
     //    }
     //});
 
+    // const tranporter = nodemailer.createTransport({
+    //     host: "smtp.mailtrap.io ",                        // mailtrapten hesap açılıp buralar doldurulmalı ya da 
+    //     port: 2525,
+    //     secure: true,
+    //     auth: {
+    //         user: "user",
+    //         pass: "pass"
+    //     }
+    // });
+
 
     const info = await tranporter.sendMail({         
         from: 'Fred Foo <test@test.com> ',            // bizim mail
